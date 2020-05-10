@@ -1,0 +1,19 @@
+version: '2.0'
+services:
+  proxy:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./public:/var/www/app/public
+    networks:
+      - bridge
+  app:
+    image: php7:latest
+    volumes:
+      - ./:/var/www/app
+    networks:
+      - bridge
+networks:
+  bridge:
+    driver: bridge
